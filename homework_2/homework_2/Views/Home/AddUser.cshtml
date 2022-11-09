@@ -1,0 +1,17 @@
+﻿@model  homework_2.Models.User
+@{
+    ViewBag.Title = "AddUser";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h2>AddUser</h2>
+@using (Html.BeginForm()) {
+	<div>
+		@Html.EditorForModel()
+	</div>
+	<input type="submit" value="Save" />
+}
+

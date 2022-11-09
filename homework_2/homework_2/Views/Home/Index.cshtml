@@ -1,36 +1,8 @@
-﻿@model  homework_2.Models.User
-@{
+﻿@{
 	ViewBag.Title = "Home Page";
 }
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-@using (Html.BeginForm()) {
-	<div>
-		@Html.EditorForModel()
-		@*
-			@Html.EditorForModel
-			@Html.LabelFor(m=>m.Name)
-			@Html.TextBoxFor(m=>m.Name)
-			@Html.ValidationMessageFor(m=>m.Name)
-			<br />
-			@Html.LabelFor(m=>m.Age)
-			@Html.TextBoxFor(m=>m.Age)
-			@Html.ValidationMessageFor(m=>m.Age)
-			<br />
-			@Html.LabelFor(m=>m.Email)
-			@Html.TextBoxFor(m=>m.Email)
-			@Html.ValidationMessageFor(m=>m.Email)
-			<br />
-			@Html.LabelFor(m=>m.Password)
-			@Html.PasswordFor(m=>m.Password)
-			@Html.ValidationMessageFor(m=>m.Password)
-			<br />
-			@Html.LabelFor(m=>m.ConfirmPassword)
-			@Html.PasswordFor(m=>m.ConfirmPassword)
-			@Html.ValidationMessageFor(m=>m.ConfirmPassword)
-		*@
-	</div>
-	<input type="submit" value="Save" />
-}
+<h1>Welcome to the homepage!</h1>

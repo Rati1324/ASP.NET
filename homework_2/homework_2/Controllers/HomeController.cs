@@ -7,22 +7,19 @@ using System.Web.Mvc;
 
 namespace homework_2.Controllers {
 	public class HomeController : Controller {
-		public List<User> GetUsers() {
-			List<User> users = new List<User>() {
-				new User { Id = 1, Name = "John", Age = 20 },
-				new User { Id = 2, Name = "John 2", Age = 22 },
-				new User { Name = "John 2", Age = 22 },
-			};
-			return users;
+		public JsonResult Index() {
+			return Json("{name:john}", JsonRequestBehavior.AllowGet);
+			//return View();
 		}
 
-		public ActionResult Index() {
+		public ViewResult AddUser() {
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Index(User user) {
+		public ActionResult AddUser(User user) {
 			if (ModelState.IsValid) {
+				//return View("Message");
 				return RedirectToAction("Message");
 			}
 			return View();

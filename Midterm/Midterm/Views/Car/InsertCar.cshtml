@@ -1,0 +1,42 @@
+﻿@model  Midterm.DB.Car
+@{
+    ViewBag.Title = "InsertCar";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h2>Insert car</h2>
+@using (Html.BeginForm()) {
+	<div>
+		@*@Html.EditorForModel()*@
+		<p>
+			@Html.LabelFor(m=>m.name)
+			@Html.TextBoxFor(m=>m.name)
+			@Html.ValidationMessageFor(m=>m.name)
+		</p>
+		<p>
+			@Html.LabelFor(m=>m.horsePower)
+			@Html.TextBoxFor(m=>m.horsePower)
+			@Html.ValidationMessageFor(m=>m.horsePower)
+		</p>
+		<p>
+			@Html.LabelFor(m=>m.speed)
+			@Html.TextBoxFor(m=>m.speed)
+			@Html.ValidationMessageFor(m=>m.speed)
+		</p>
+		<p>
+			@Html.LabelFor(m=>m.price)
+			@Html.TextBoxFor(m=>m.price)
+			@Html.ValidationMessageFor(m=>m.price)
+		</p>
+		<p>
+			@Html.LabelFor(m=>m.year)
+			@Html.TextBoxFor(m=>m.year)
+			@Html.ValidationMessageFor(m=>m.year)
+		</p>
+
+	</div>
+	<input type="submit" value="save" />
+}
+
