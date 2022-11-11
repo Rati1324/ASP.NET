@@ -1,37 +1,38 @@
 ﻿@model  Midterm.DB.Car
 @{
-    ViewBag.Title = "InsertCar";
+    ViewBag.Title = "EditCar";
 }
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-<h2>Insert car</h2>
+<h2>Edit car</h2>
 @using (Html.BeginForm()) {
 	<div>
+		@Html.HiddenFor(m => m.id, new { @Value = ViewBag.Car.id })
 		<p>
 			@Html.LabelFor(m=>m.name)
-			@Html.TextBoxFor(m=>m.name)
+			@Html.TextBoxFor(m=>m.name, new { @Value = ViewBag.Car.name })
 			@Html.ValidationMessageFor(m=>m.name)
 		</p>
 		<p>
 			@Html.LabelFor(m=>m.horsePower)
-			@Html.TextBoxFor(m=>m.horsePower)
+			@Html.TextBoxFor(m=>m.horsePower, new { @Value = ViewBag.Car.horsePower })
 			@Html.ValidationMessageFor(m=>m.horsePower)
 		</p>
 		<p>
 			@Html.LabelFor(m=>m.speed)
-			@Html.TextBoxFor(m=>m.speed)
+			@Html.TextBoxFor(m=>m.speed, new { @Value = ViewBag.Car.speed })
 			@Html.ValidationMessageFor(m=>m.speed)
 		</p>
 		<p>
 			@Html.LabelFor(m=>m.price)
-			@Html.TextBoxFor(m=>m.price)
+			@Html.TextBoxFor(m=>m.price, new { @Value = ViewBag.Car.price })
 			@Html.ValidationMessageFor(m=>m.price)
 		</p>
 		<p>
 			@Html.LabelFor(m=>m.year)
-			@Html.TextBoxFor(m=>m.year)
+			@Html.TextBoxFor(m=>m.year, new { @Value = ViewBag.Car.year })
 			@Html.ValidationMessageFor(m=>m.year)
 		</p>
 	</div>

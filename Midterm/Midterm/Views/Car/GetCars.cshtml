@@ -10,9 +10,6 @@
 			<th scope="col">Name</th>
 			<th scope="col">Year</th>
 			<th scope="col">Horsepower</th>
-			<th scope="col">Transmission</th>
-			<th scope="col">Fuel</th>
-			<th scope="col">Body type</th>
 			<th scope="col">Speed</th>
 			<th scope="col">Price</th>
 		</tr>
@@ -26,7 +23,8 @@
 					@:<td scope="row">@car.horsePower</td>
 					@:<td scope="row">@car.speed</td>
 					@:<td scope="row">@car.price</td>
-					@:<td><button>Rent</button></td>
+                    @:<td scope="row">@Html.ActionLink("Edit", "EditCar", new {carId = car.id})</td>
+                    @:<td scope="row">@Html.ActionLink("Delete", "DeleteCar", new {carId = car.id})</td>
 				@:</tr>
 			}
 		}

@@ -180,6 +180,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Car\GetCars.cshtml" />
     <Content Include="Views\Car\InsertCar.cshtml" />
+    <Content Include="Views\Car\DeleteCar.cshtml" />
+    <Content Include="Views\Car\EditCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
