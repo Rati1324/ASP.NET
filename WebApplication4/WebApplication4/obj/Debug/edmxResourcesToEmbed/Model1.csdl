@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user2" Relationship="Self.FK__user2__roleId__4316F928" FromRole="role" ToRole="user2" />
+  </EntityType>
+  <EntityType Name="user2">
+    <Key>
+      <PropertyRef Name="uId" />
+    </Key>
+    <Property Name="uId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="roleId" Type="Int32" />
+    <NavigationProperty Name="role" Relationship="Self.FK__user2__roleId__4316F928" FromRole="user2" ToRole="role" />
+  </EntityType>
+  <Association Name="FK__user2__roleId__4316F928">
+    <End Role="role" Type="Self.role" Multiplicity="0..1" />
+    <End Role="user2" Type="Self.user2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="user2">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="user2" EntityType="Self.user2" />
+    <AssociationSet Name="FK__user2__roleId__4316F928" Association="Self.FK__user2__roleId__4316F928">
+      <End Role="role" EntitySet="roles" />
+      <End Role="user2" EntitySet="user2" />
+    </AssociationSet>
+    <EntitySet Name="books" EntityType="AppModel.book" />
+    <EntitySet Name="genres" EntityType="AppModel.genre" />
+    <EntitySet Name="movies" EntityType="AppModel.movie" />
+    <EntitySet Name="productCategories" EntityType="AppModel.productCategory" />
+    <AssociationSet Name="FK__book__categoryId__49C3F6B7" Association="AppModel.FK__book__categoryId__49C3F6B7">
+      <End Role="productCategory" EntitySet="productCategories" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__book__genreId__4AB81AF0" Association="AppModel.FK__book__genreId__4AB81AF0">
+      <End Role="genre" EntitySet="genres" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__movie__genreId__4E88ABD4" Association="AppModel.FK__movie__genreId__4E88ABD4">
+      <End Role="genre" EntitySet="genres" />
+      <End Role="movie" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__movie__categoryI__4D94879B" Association="AppModel.FK__movie__categoryI__4D94879B">
+      <End Role="productCategory" EntitySet="productCategories" />
+      <End Role="movie" EntitySet="movies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="bookId" />
+    </Key>
+    <Property Name="bookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="categoryId" Type="Int32" />
+    <Property Name="genreId" Type="Int32" />
+    <NavigationProperty Name="productCategory" Relationship="AppModel.FK__book__categoryId__49C3F6B7" FromRole="book" ToRole="productCategory" />
+    <NavigationProperty Name="genre" Relationship="AppModel.FK__book__genreId__4AB81AF0" FromRole="book" ToRole="genre" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="genreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="AppModel.FK__book__genreId__4AB81AF0" FromRole="genre" ToRole="book" />
+    <NavigationProperty Name="movies" Relationship="AppModel.FK__movie__genreId__4E88ABD4" FromRole="genre" ToRole="movie" />
+  </EntityType>
+  <EntityType Name="movie">
+    <Key>
+      <PropertyRef Name="movieId" />
+    </Key>
+    <Property Name="movieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="categoryId" Type="Int32" />
+    <Property Name="genreId" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="AppModel.FK__movie__genreId__4E88ABD4" FromRole="movie" ToRole="genre" />
+    <NavigationProperty Name="productCategory" Relationship="AppModel.FK__movie__categoryI__4D94879B" FromRole="movie" ToRole="productCategory" />
+  </EntityType>
+  <EntityType Name="productCategory">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="AppModel.FK__book__categoryId__49C3F6B7" FromRole="productCategory" ToRole="book" />
+    <NavigationProperty Name="movies" Relationship="AppModel.FK__movie__categoryI__4D94879B" FromRole="productCategory" ToRole="movie" />
+  </EntityType>
+  <Association Name="FK__book__categoryId__49C3F6B7">
+    <End Type="AppModel.productCategory" Role="productCategory" Multiplicity="0..1" />
+    <End Type="AppModel.book" Role="book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__book__genreId__4AB81AF0">
+    <End Type="AppModel.genre" Role="genre" Multiplicity="0..1" />
+    <End Type="AppModel.book" Role="book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="genreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__movie__genreId__4E88ABD4">
+    <End Type="AppModel.genre" Role="genre" Multiplicity="0..1" />
+    <End Type="AppModel.movie" Role="movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="movie">
+        <PropertyRef Name="genreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__movie__categoryI__4D94879B">
+    <End Type="AppModel.productCategory" Role="productCategory" Multiplicity="0..1" />
+    <End Type="AppModel.movie" Role="movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productCategory">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="movie">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
