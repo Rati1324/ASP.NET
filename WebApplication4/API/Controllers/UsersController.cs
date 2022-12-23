@@ -12,7 +12,7 @@ namespace API.Controllers
     {
         private AppEntities db = new AppEntities();
         // GET: Users
-        public IQueryable<user2> Getbooks()
+        public IQueryable<user2> GetUsers()
         {
             return db.user2;
         }

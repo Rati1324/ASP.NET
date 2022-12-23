@@ -13,11 +13,6 @@ namespace WebApplication4.Controllers
         // GET: Books
         public ActionResult Index()
         {
-            //HttpClient WebApiClient = new HttpClient();
-            //WebApiClient.BaseAddress = new Uri("https://localhost:44308/api/");
-            //WebApiClient.DefaultRequestHeaders.Clear();
-            //WebApiClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
             IEnumerable<BookDTO> books; 
             var response = GlobalVariables.WebApiClient.GetAsync("books");
             response.Wait();

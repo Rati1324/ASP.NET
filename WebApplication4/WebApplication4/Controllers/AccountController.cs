@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web.UI.WebControls;
 using API.Models;
-
+using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
@@ -25,18 +25,39 @@ namespace WebApplication4.Controllers
         {
             using (AppEntities db = new AppEntities())
             {
-                Session["userId"] = "john";
-                return RedirectToAction("Index", "Home");
-                //var res = db.user2.Where(u => u.name == user.Username && u.password == user.Password);
-                //if (res.Count() != 0)
-                //{
-                //    Session["userId"] = user.Username;
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //else
-                //{
-                //    TempData["msg"] = "incorrect credentials";
-                //}
+                IEnumerable<UserDTO> Users;
+                var response = GlobalVariables.WebApiClient.GetAsync("users");
+                response.Wait();
+
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<UserDTO>>();
+                    readTask.Wait();
+
+                    Users = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    Users = Enumerable.Empty<UserDTO>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+
+                //Session["userId"] = "john";
+                //return RedirectToAction("Index", "Home");
+                var res = Users.Where(u => u.name == user.name && u.password == user.password).First();
+                if (res != null)
+                {
+                    Session["userId"] = res.name;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["msg"] = "incorrect credentials";
+                }
             }
             return View();
         }
