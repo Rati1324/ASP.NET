@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Policy;
@@ -12,9 +13,10 @@ namespace WebApplication4
     {
         public static HttpClient WebApiClient = new HttpClient();
 
+        public static string APIAddress = ConfigurationManager.AppSettings["APIAddress"];
         static GlobalVariables() 
         {
-            WebApiClient.BaseAddress = new Uri("https://localhost:44308/api/");
+            WebApiClient.BaseAddress = new Uri(APIAddress);
             WebApiClient.DefaultRequestHeaders.Clear();
             WebApiClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
         }
