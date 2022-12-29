@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e24a5c4b47344119fc3618f24085503" Name="Diagram1">
+      <Diagram DiagramId="73a2af7413d64f17a71c1594bb4c7062" Name="Diagram1">
         <EntityTypeShape EntityType="AppModel.book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="AppModel.genre" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AppModel.movie" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="AppModel.role" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AppModel.user2" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="AppModel.FK__book__genreId__4AB81AF0" ManuallyRouted="false" />
-        <AssociationConnector Association="AppModel.FK__movie__genreId__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="AppModel.FK__user2__roleId__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="AppModel.FK__book__genreId__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="AppModel.FK__movie__genreId__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="AppModel.FK__user2__roleId__412EB0B6" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

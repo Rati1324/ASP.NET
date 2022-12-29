@@ -52,7 +52,7 @@ namespace WebApplication4.Controllers
                 if (res != null)
                 {
                     Session["userId"] = res.name;
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Books");
                 }
                 else
                 {

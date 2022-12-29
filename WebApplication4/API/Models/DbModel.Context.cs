@@ -31,4 +31,4 @@ namespace API.Models
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<user2> user2 { get; set; }
     }
-}   
+}

@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="book">
+    <Key>
+      <PropertyRef Name="bookId" />
+    </Key>
+    <Property Name="bookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="genreId" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="Self.FK__book__genreId__3F466844" FromRole="book" ToRole="genre" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="genreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="books" Relationship="Self.FK__book__genreId__3F466844" FromRole="genre" ToRole="book" />
+    <NavigationProperty Name="movies" Relationship="Self.FK__movie__genreId__403A8C7D" FromRole="genre" ToRole="movie" />
+  </EntityType>
+  <EntityType Name="movie">
+    <Key>
+      <PropertyRef Name="movieId" />
+    </Key>
+    <Property Name="movieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="genreId" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="Self.FK__movie__genreId__403A8C7D" FromRole="movie" ToRole="genre" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="roleId" />
+    </Key>
+    <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="user2" Relationship="Self.FK__user2__roleId__412EB0B6" FromRole="role" ToRole="user2" />
+  </EntityType>
+  <EntityType Name="user2">
+    <Key>
+      <PropertyRef Name="uId" />
+    </Key>
+    <Property Name="uId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="isActive" Type="Boolean" />
+    <Property Name="roleId" Type="Int32" />
+    <NavigationProperty Name="role" Relationship="Self.FK__user2__roleId__412EB0B6" FromRole="user2" ToRole="role" />
+  </EntityType>
+  <Association Name="FK__book__genreId__3F466844">
+    <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+    <End Role="book" Type="Self.book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="book">
+        <PropertyRef Name="genreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__movie__genreId__403A8C7D">
+    <End Role="genre" Type="Self.genre" Multiplicity="0..1" />
+    <End Role="movie" Type="Self.movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="movie">
+        <PropertyRef Name="genreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user2__roleId__412EB0B6">
+    <End Role="role" Type="Self.role" Multiplicity="0..1" />
+    <End Role="user2" Type="Self.user2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="roleId" />
+      </Principal>
+      <Dependent Role="user2">
+        <PropertyRef Name="roleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AppEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="books" EntityType="Self.book" />
+    <EntitySet Name="genres" EntityType="Self.genre" />
+    <EntitySet Name="movies" EntityType="Self.movie" />
+    <EntitySet Name="roles" EntityType="Self.role" />
+    <EntitySet Name="user2" EntityType="Self.user2" />
+    <AssociationSet Name="FK__book__genreId__3F466844" Association="Self.FK__book__genreId__3F466844">
+      <End Role="genre" EntitySet="genres" />
+      <End Role="book" EntitySet="books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__movie__genreId__403A8C7D" Association="Self.FK__movie__genreId__403A8C7D">
+      <End Role="genre" EntitySet="genres" />
+      <End Role="movie" EntitySet="movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user2__roleId__412EB0B6" Association="Self.FK__user2__roleId__412EB0B6">
+      <End Role="role" EntitySet="roles" />
+      <End Role="user2" EntitySet="user2" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

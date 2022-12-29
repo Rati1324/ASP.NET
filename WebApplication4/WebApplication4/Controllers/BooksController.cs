@@ -13,27 +13,34 @@ namespace WebApplication4.Controllers
         // GET: Books
         public ActionResult Index()
         {
-            IEnumerable<BookDTO> books; 
-            var response = GlobalVariables.WebApiClient.GetAsync("books");
-            response.Wait();
-    
-            var result = response.Result;
-            if (result.IsSuccessStatusCode)
+            if (Session["userId"] == null)
             {
-                var readTask = result.Content.ReadAsAsync<IList<BookDTO>>();
-                readTask.Wait();
-
-                books = readTask.Result;
+                return RedirectToAction("Login", "Account");
             }
-            else //web api sent error response 
+            else
             {
-                //log response status here..
+                IEnumerable<BookDTO> books; 
+                var response = GlobalVariables.WebApiClient.GetAsync("books");
+                response.Wait();
+        
+                var result = response.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<BookDTO>>();
+                    readTask.Wait();
 
-                books = Enumerable.Empty<BookDTO>();
+                    books = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
 
-                ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                    books = Enumerable.Empty<BookDTO>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+                return View(books);
             }
-            return View(books);
         }
     }
 }
