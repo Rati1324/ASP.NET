@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Books";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<h3>Choose category:</h3>
+<select id="category">
+    <option value="books">Books</option>
+    <option value="movies">Movies</option>
+</select>
+
+<table class="table">
+
+    @foreach (var item in ViewBag.books)
+    {
+        <tr>
+            <td>
+                @item.name
+            </td>
+            <td>
+                @item.genreId
+            </td>
+            <td>
+                @if (Convert.ToInt32(Session["userType"]) == 0)
+                {
+                   <span>@Html.ActionLink("Edit", "Edit", new { id = @item.bookId }) |</span>
+                   <span>@Html.ActionLink("Detaials", "Details", new { id = @item.bookId }) |</span>
+                   <span>@Html.ActionLink("Delete", "Delete", new { id = @item.bookId })</span>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script>
+    var apiAddress = '@(ViewBag.APIAddress)'
+    function onProductChange() {
+        window.location.href = window.location.href + '&productType=' + $(this).val();
+    };
+
+    document.querySelector("#category").addEventListener('change', onProductChange);
+
+</script>

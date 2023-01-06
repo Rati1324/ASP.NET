@@ -22,14 +22,14 @@ namespace WebApplication4.Controllers
             else
             {
                 IEnumerable<BookDTO> books; 
-                IEnumerable<MovieDTO> books; 
+                IEnumerable<MovieDTO> movies; 
                 var responseBooks = GlobalVariables.WebApiClient.GetAsync("books");
                 var responseMovies = GlobalVariables.WebApiClient.GetAsync("movies");
                 responseBooks.Wait();
                 responseMovies.Wait();
         
                 var resultBooks = responseBooks.Result;
-                var resultMovies = responseBooks.Result;
+                var resultMovies = responseMovies.Result;
 
                 if (resultBooks.IsSuccessStatusCode && resultMovies.IsSuccessStatusCode)
                 {
@@ -46,12 +46,14 @@ namespace WebApplication4.Controllers
                     //log response status here..
 
                     books = Enumerable.Empty<BookDTO>();
+                    movies = Enumerable.Empty<MovieDTO>();
 
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
                 ViewBag.APIAddress = ConfigurationManager.AppSettings["APIAddress"];
                 ViewBag.Books = books;
-                return View("Books", books);
+                ViewBag.Movies = movies;
+                return View();
             }
         }
     }

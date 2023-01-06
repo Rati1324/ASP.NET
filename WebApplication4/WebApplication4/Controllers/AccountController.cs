@@ -46,12 +46,11 @@ namespace WebApplication4.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
 
-                //Session["userId"] = "john";
-                //return RedirectToAction("Index", "Home");
                 var res = Users.Where(u => u.name == user.name && u.password == user.password).First();
                 if (res != null)
                 {
                     Session["userId"] = res.name;
+                    Session["userType"] = 0;
                     return RedirectToAction("Index", "Product");
                 }
                 else

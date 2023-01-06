@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Models\BookDTO.cs" />
+    <Compile Include="Models\MovieDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,7 +178,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Product\Books.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
