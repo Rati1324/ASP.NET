@@ -29,7 +29,7 @@
                 @if (Convert.ToInt32(Session["userType"]) == 0)
                 {
                    <span>@Html.ActionLink("Edit", "Edit", new { id = @item.bookId }) |</span>
-                   <span>@Html.ActionLink("Detaials", "Details", new { id = @item.bookId }) |</span>
+                   <span>@Html.ActionLink("Details", "Details", new { id = @item.bookId }) |</span>
                    <span>@Html.ActionLink("Delete", "Delete", new { id = @item.bookId })</span>
                 }
             </td>
