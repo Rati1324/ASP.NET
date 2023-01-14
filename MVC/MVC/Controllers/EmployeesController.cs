@@ -14,18 +14,22 @@ namespace MVC.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            var response = GlobalVariables.WebApiClient.GetAsync("employees");
-            response.Wait();
-            var result = response.Result;
-
-            if (result.IsSuccessStatusCode)
+            if (Session["userId"] != null)
             {
-                var readEmps = result.Content.ReadAsAsync<IList<EmployeeDTO>>();
-                readEmps.Wait();
-                var emps = readEmps.Result;
-                return View(emps);
+                var response = GlobalVariables.WebApiClient.GetAsync("employees");
+                response.Wait();
+                var result = response.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    var readEmps = result.Content.ReadAsAsync<IList<EmployeeDTO>>();
+                    readEmps.Wait();
+                    var emps = readEmps.Result;
+                    return View(emps);
+                }
+                return View();
             }
-            return View();
+            return RedirectToAction("Login", "Users");
         }
 
         public ActionResult AddOrEdit(int id = 0)

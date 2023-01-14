@@ -63,5 +63,11 @@ namespace MVC.Controllers
             }
             return View();
         }
+
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

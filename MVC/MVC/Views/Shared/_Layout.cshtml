@@ -19,6 +19,14 @@
                 </button>
                 @Html.ActionLink("Register", "Register", "Users", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Login", "Login", "Users", new { area = "" }, new { @class = "navbar-brand" })
+
+                @{
+                    if (Session["userId"] != null)
+                    {
+                        @Html.ActionLink("Employees", "Index", "Employees", new { area = "" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Logout", "Logout", "Users", new { area = "" }, new { @class = "navbar-brand" })
+                    }
+                } 
             </div>
 
         </div>
