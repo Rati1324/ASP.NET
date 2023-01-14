@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MVC.Models.EmployeeDTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="@Url.Action("AddOrEdit", "Employees")" class="btn btn-default">Create new</a>
+</p>
+<table class="table table-striped">
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            <a href="@Url.Action("AddOrEdit", "Employees", new {id = item.EmployeeID})" class="btn btn-default">Edit</a>
+            <a onclick="Delete(@item.EmployeeID)" href="@Url.Action("Delete", "Employees", new {id = item.EmployeeID})" class="btn btn-default">Delete</a>
+        </td>
+    </tr>
+}
+</table>
+
+@section scripts{
+    <script>
+        $(function () {
+            var successMessage = '@TempData["successMessage"]'
+            if (successMessage != '')
+                alertify.success(successMessage);
+        });
+
+        function delete (id) {
+            aletrify.confirm("CRUD operations", "Are you sure?", function () {
+                window.location.href = '@Url.Action("Delete", "Employees")/' + id;
+            }, null);
+        }
+    </script>
+}
