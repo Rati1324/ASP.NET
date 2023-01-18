@@ -8,102 +8,107 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebAPI.Models;
+using EmployeeRepository;
 
 namespace WebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private CRUDDBEntities db = new CRUDDBEntities();
+        private IEmpRepository _employeeRepository;
 
+        public EmployeesController()
+        {
+            _employeeRepository = new EmpRepository(new EmployeeEntities());
+        }
+        public EmployeesController(IEmpRepository employeeRepository)
+        {
+            _employeeRepository = employeeRepository;
+        }
         // GET: api/Employees
-        public IQueryable<Employee> GetEmployees()
+        public IEnumerable<EmployeeRepository.Employee> GetEmployees()
         {
-            return db.Employees;
+            return _employeeRepository.GetAll();
+            //return db.Employees;
         }
 
-        // GET: api/Employees/5
-        [ResponseType(typeof(Employee))]
-        public IHttpActionResult GetEmployee(int id)
-        {
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(Employee))]
+        //public IHttpActionResult GetEmployee(int id)
+        //{
+        //    Employee employee = db.Employees.Find(id);
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(employee);
-        }
+        //    return Ok(employee);
+        //}
 
-        // PUT: api/Employees/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutEmployee(int id, Employee employee)
-        {
-            if (id != employee.EmployeeID)
-            {
-                return BadRequest();
-            }
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutEmployee(int id, Employee employee)
+        //{
+        //    if (id != employee.EmployeeID)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(employee).State = EntityState.Modified;
+        //    db.Entry(employee).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!EmployeeExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/Employees
-        [ResponseType(typeof(Employee))]
-        public IHttpActionResult PostEmployee(Employee employee)
-        {
+        //[ResponseType(typeof(Employee))]
+        //public IHttpActionResult PostEmployee(Employee employee)
+        //{
           
-            db.Employees.Add(employee);
-            db.SaveChanges();
+        //    db.Employees.Add(employee);
+        //    db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = employee.EmployeeID }, employee);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = employee.EmployeeID }, employee);
+        //}
 
-        // DELETE: api/Employees/5
-        [ResponseType(typeof(Employee))]
-        public IHttpActionResult DeleteEmployee(int id)
-        {
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return NotFound();
-            }
+        //[ResponseType(typeof(Employee))]
+        //public IHttpActionResult DeleteEmployee(int id)
+        //{
+        //    Employee employee = db.Employees.Find(id);
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+        //    db.Employees.Remove(employee);
+        //    db.SaveChanges();
 
-            return Ok(employee);
-        }
+        //    return Ok(employee);
+        //}
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
-        private bool EmployeeExists(int id)
-        {
-            return db.Employees.Count(e => e.EmployeeID == id) > 0;
-        }
+        //private bool EmployeeExists(int id)
+        //{
+        //    return db.Employees.Count(e => e.EmployeeID == id) > 0;
+        //}
     }
 }
