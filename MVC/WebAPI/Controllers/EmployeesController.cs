@@ -1,7 +1,7 @@
-﻿using IRepositories;
-using Repository;
-using Repository.IRepositories;
-using Repository.Repositories;
+﻿using Repositories;
+using Repositories.IRepositories;
+using Repositories.Repositories;
+using Repositories.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,19 +17,19 @@ namespace WebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private IGenericRepository<Employee> repository = null;    
-        private IEmployeeRepository employeeRepository = null;
+        private UnitOfWork<CRUDDBEntities> unitOfWork = new UnitOfWork<CRUDDBEntities>();
+        private GenericRepository<Employee> repository;
+        private IEmployeeRepository employeeRepository;
+
+               
         public EmployeesController()
         {
-            this.repository = new GenericRepository<Employee>();
-            this.employeeRepository = new EmployeeRepository();
+            //If you want to use Generic Repository with Unit of work
+            repository = new GenericRepository<Employee>(unitOfWork);
+            //If you want to use Specific Repository with Unit of work
+            employeeRepository = new EmployeesRepository(unitOfWork);
         }
-        public EmployeesController(IGenericRepository<Employee> repository)
-        {
-            this.repository = repository;
-            this.employeeRepository = new EmployeeRepository();
-        }
-        
+
         // GET: api/Employees
         public IEnumerable<Employee> GetEmployees()
         {
