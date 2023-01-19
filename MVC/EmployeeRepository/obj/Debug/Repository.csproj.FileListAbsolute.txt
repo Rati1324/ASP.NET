@@ -1,0 +1,12 @@
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EmployeeRepository.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EmployeeRepository.dll
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EmployeeRepository.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EntityFramework.dll
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EntityFramework.xml
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\obj\Debug\Repository.csproj.AssemblyReference.cache
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\obj\Debug\Repository.csproj.CoreCompileInputs.cache
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\obj\Debug\Repository.csproj.CopyComplete
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\obj\Debug\EmployeeRepository.dll
+C:\Users\rati\Documents\ASP.NET\MVC\EmployeeRepository\obj\Debug\EmployeeRepository.pdb

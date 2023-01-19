@@ -1,4 +1,8 @@
-﻿using System;
+﻿using IRepositories;
+using Repository;
+using Repository.IRepositories;
+using Repository.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,29 +12,36 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using EmployeeRepository;
 
 namespace WebAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        private IEmpRepository _employeeRepository;
-
+        private IGenericRepository<Employee> repository = null;    
+        private IEmployeeRepository employeeRepository = null;
         public EmployeesController()
         {
-            _employeeRepository = new EmpRepository(new EmployeeEntities());
+            this.repository = new GenericRepository<Employee>();
+            this.employeeRepository = new EmployeeRepository();
         }
-        public EmployeesController(IEmpRepository employeeRepository)
+        public EmployeesController(IGenericRepository<Employee> repository)
         {
-            _employeeRepository = employeeRepository;
+            this.repository = repository;
+            this.employeeRepository = new EmployeeRepository();
         }
+        
         // GET: api/Employees
-        public IEnumerable<EmployeeRepository.Employee> GetEmployees()
+        public IEnumerable<Employee> GetEmployees()
         {
-            return _employeeRepository.GetAll();
+            return repository.GetAll();
             //return db.Employees;
         }
 
+        public IEnumerable<Employee> GetEmployeesByPosition(string position)
+        {
+            var res = employeeRepository.GetEmployeesByPosition("weq");
+            return res.ToList();
+        }
         //[ResponseType(typeof(Employee))]
         //public IHttpActionResult GetEmployee(int id)
         //{

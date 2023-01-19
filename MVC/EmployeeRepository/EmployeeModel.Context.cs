@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EmployeeRepository
+namespace Repository
 {
     using System;
     using System.Data.Entity;

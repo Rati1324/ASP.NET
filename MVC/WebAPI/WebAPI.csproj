@@ -261,9 +261,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EmployeeRepository\EmployeeRepository.csproj">
+    <ProjectReference Include="..\EmployeeRepository\Repository.csproj">
       <Project>{20856926-9374-4508-adf4-ca652c3cda3b}</Project>
-      <Name>EmployeeRepository</Name>
+      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
