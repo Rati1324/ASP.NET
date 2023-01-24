@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
 
         public IEnumerable<Employee> GetEmployeesByPosition(string position)
         {
-            var res = employeeRepository.GetEmployeesByPosition("weq");
+            var res = employeeRepository.GetEmployeesByPosition("");
             return res.ToList();
         }
         //[ResponseType(typeof(Employee))]

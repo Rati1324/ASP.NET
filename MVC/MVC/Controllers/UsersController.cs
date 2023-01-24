@@ -32,21 +32,21 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Login(UserDTO user)
         {
-            IEnumerable<UserDTO> Users;
-            var response = GlobalVariables.WebApiClient.GetAsync("users");
+            UserDTO userResult;
+            var response = GlobalVariables.WebApiClient.GetAsync($"users/{user.UserId}");
             response.Wait();
 
             var result = response.Result;
             if (result.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<IList<UserDTO>>();
+                var readTask = result.Content.ReadAsAsync<UserDTO>();
                 readTask.Wait();
 
-                Users = readTask.Result;
+                userResult = readTask.Result;
             }
             else 
             {
-                Users = Enumerable.Empty<UserDTO>();
+                userResult = new UserDTO();
                 ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
             }
 

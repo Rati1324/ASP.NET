@@ -9,9 +9,6 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
 using System.Web.Http;
 using System.Web.Http.Description;
 
@@ -24,24 +21,26 @@ namespace WebAPI.Controllers
         public UsersController()
         {
             //If you want to use Generic Repository with Unit of work
-            this.repository = new GenericRepository<User>(unitOfWork);
+            repository = new GenericRepository<User>(unitOfWork);
             //If you want to use Specific Repository with Unit of work
         }
         public IEnumerable<User> GetUsers()
         {
             return repository.GetAll();
+            //return db.Employees;
         }
 
-        [ResponseType(typeof(User))]
-        public IHttpActionResult GetUser(int id)
-        {
-            User user = repository.GetById(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return Ok(user);
-        }
+        //    [ResponseType(typeof(User))]
+        //    public IHttpActionResult GetUser(int id)
+        //    {
+        //        User user = db.Users.Find(id);
+        //        if (user == null)
+        //        {
+        //            return NotFound();
+        //        }
+
+        //        return Ok(user);
+        //    }
 
         //    // PUT: api/Users/5
         //    [ResponseType(typeof(void))]
@@ -82,12 +81,28 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            user.Password = Hash.HashString(user.Password);
-            if (ModelState.IsValid)
+            const int keySize = 64;
+            const int iterations = 350000;
+            HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+            string HashPasword(string password, out byte[] salt)
             {
-                repository.Insert(user);
-                unitOfWork.Save();
+                salt = RandomNumberGenerator.GetBytes(keySize);
+                var hash = Rfc2898DeriveBytes.Pbkdf2(
+                    Encoding.UTF8.GetBytes(password),
+                    salt,
+                    iterations,
+                    hashAlgorithm,
+                    keySize);
+                return Convert.ToHexString(hash);
             }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Users.Add(user);
+            db.SaveChanges();
+
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
 

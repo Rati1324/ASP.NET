@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace Repositories.Repositories
         private IDbSet<T> _entities;
         private string _errorMessage = string.Empty;
         private bool _isDisposed;
+
         public GenericRepository(IUnitOfWork<CRUDDBEntities> unitOfWork)
             : this(unitOfWork.Context)
         {
