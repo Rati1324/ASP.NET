@@ -19,6 +19,7 @@ namespace MVC.Controllers
         public ActionResult Register(UserDTO User)
         {
             User.Role = 0;
+            User.Password = Hash.HashString(User.Password);
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Users", User).Result;
             TempData["SuccessMessage"] = "Updated Successfully";
             return RedirectToAction("Index", "Home");
@@ -32,36 +33,34 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Login(UserDTO user)
         {
-            UserDTO userResult;
-            var response = GlobalVariables.WebApiClient.GetAsync($"users/{user.UserId}");
+            var response = GlobalVariables.WebApiClient.GetAsync("users");
             response.Wait();
 
             var result = response.Result;
             if (result.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<UserDTO>();
+                var readTask = result.Content.ReadAsAsync<IList<UserDTO>>();
                 readTask.Wait();
+                var userList = readTask.Result;
 
-                userResult = readTask.Result;
+                var userResult = userList.Where(u => u.Username == user.Username).First();
+                if (Hash.HashForComparison(user.Password, userResult.Password))
+                {
+                    Session["userId"] = 2;
+                    Session["userType"] = 0;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    TempData["msg"] = "incorrect credentials";
+                }
             }
             else 
             {
-                userResult = new UserDTO();
+                var userResult = new UserDTO();
                 ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
             }
-
-            //var res = Users.Where(u => u.Username == user.Username && u.Password == user.Password).First();
-            //if (res != null)
-            //{
-            Session["userId"] = 2;
-            Session["userType"] = 0;
-            return RedirectToAction("Index", "Home");
-            //}
-            //else
-            //{
-            //    TempData["msg"] = "incorrect credentials";
-            //}
-            //return View();
+            return View();
         }
 
         public ActionResult Logout()

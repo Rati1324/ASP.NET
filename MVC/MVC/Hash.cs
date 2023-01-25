@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 
-namespace WebAPI
+namespace MVC
 {
     public class Hash
     {
@@ -26,19 +25,21 @@ namespace WebAPI
             string savedPasswordHash = Convert.ToBase64String(hashBytes);
             return savedPasswordHash;
         }
-        //public static string UnHashString(string input)
-        //{
-        //    byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
-        //    byte[] salt = new byte[16];
-        //    Array.Copy(hashBytes, 0, salt, 0, 16);
-        //    /* Compute the hash on the password the user entered */
-        //    var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 100000);
-        //    byte[] hash = pbkdf2.GetBytes(20);
-        //    /* Compare the results */
-        //    for (int i = 0; i < 20; i++)
-        //        if (hashBytes[i + 16] != hash[i])
-        //            throw new UnauthorizedAccessException();
+        public static bool HashForComparison(string input, string savedPasswordHash)
+        {
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            /* Compute the hash on the password the user entered */
+            var pbkdf2 = new Rfc2898DeriveBytes(input, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            /* Compare the results */
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    //throw new UnauthorizedAccessException();
+                    return false;
+            return true;
 
-        //}
+        }
     }
 }

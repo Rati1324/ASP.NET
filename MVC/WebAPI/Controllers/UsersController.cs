@@ -82,7 +82,6 @@ namespace WebAPI.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
-            user.Password = Hash.HashString(user.Password);
             if (ModelState.IsValid)
             {
                 repository.Insert(user);
