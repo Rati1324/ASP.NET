@@ -34,5 +34,41 @@
     <EntitySet Name="Employees" EntityType="Self.Employee" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Brands" EntityType="DBModel.Brand" />
+    <EntitySet Name="Cars" EntityType="DBModel.Car" />
+    <AssociationSet Name="FK_Car_Brand" Association="DBModel.FK_Car_Brand">
+      <End Role="Brand" EntitySet="Brands" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="BrandId" />
+    </Key>
+    <Property Name="BrandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BrandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cars" Relationship="DBModel.FK_Car_Brand" FromRole="Brand" ToRole="Car" />
+  </EntityType>
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Brand" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Brand1" Relationship="DBModel.FK_Car_Brand" FromRole="Car" ToRole="Brand" />
+  </EntityType>
+  <Association Name="FK_Car_Brand">
+    <End Type="DBModel.Brand" Role="Brand" Multiplicity="0..1" />
+    <End Type="DBModel.Car" Role="Car" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="BrandId" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="Brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

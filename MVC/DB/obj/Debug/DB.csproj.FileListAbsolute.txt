@@ -1,0 +1,12 @@
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\DB.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\DB.dll
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\DB.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\EntityFramework.dll
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\EntityFramework.xml
+C:\Users\rati\Documents\ASP.NET\MVC\DB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\rati\Documents\ASP.NET\MVC\DB\obj\Debug\DB.csproj.AssemblyReference.cache
+C:\Users\rati\Documents\ASP.NET\MVC\DB\obj\Debug\DB.csproj.CoreCompileInputs.cache
+C:\Users\rati\Documents\ASP.NET\MVC\DB\obj\Debug\DB.csproj.CopyComplete
+C:\Users\rati\Documents\ASP.NET\MVC\DB\obj\Debug\DB.dll
+C:\Users\rati\Documents\ASP.NET\MVC\DB\obj\Debug\DB.pdb

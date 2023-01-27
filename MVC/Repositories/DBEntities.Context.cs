@@ -28,5 +28,7 @@ namespace Repositories
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
+        public virtual DbSet<Car> Cars { get; set; }
     }
 }

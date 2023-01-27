@@ -163,10 +163,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,10 +221,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Cars\Create.cshtml" />
+    <Content Include="Views\Cars\Delete.cshtml" />
+    <Content Include="Views\Cars\Details.cshtml" />
+    <Content Include="Views\Cars\Edit.cshtml" />
+    <Content Include="Views\Cars\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
@@ -262,9 +264,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Repositories\Repositories.csproj">
-      <Project>{14a7574c-e77c-4a93-8719-cdd03180ac34}</Project>
-      <Name>Repositories</Name>
+    <ProjectReference Include="..\DB\DB.csproj">
+      <Project>{BE694602-BECA-4A16-AB23-206D97999E8E}</Project>
+      <Name>DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\User\User.csproj">
+      <Project>{37eca920-26f5-49a1-9d2b-8ee4cb0a1534}</Project>
+      <Name>User</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

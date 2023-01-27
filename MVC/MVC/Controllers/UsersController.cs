@@ -43,12 +43,14 @@ namespace MVC.Controllers
                 readTask.Wait();
                 var userList = readTask.Result;
 
-                var userResult = userList.Where(u => u.Username == user.Username).First();
-                if (Hash.HashForComparison(user.Password, userResult.Password))
-                {
-                    Session["userId"] = 2;
-                    Session["userType"] = 0;
-                    return RedirectToAction("Index", "Home");
+                var userResult = userList.Where(u => u.Username == user.Username).FirstOrDefault();
+                if (userResult != null) {
+                    if (Hash.HashForComparison(user.Password, userResult.Password))
+                    {
+                        Session["userId"] = 2;
+                        Session["userType"] = 0;
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {

@@ -123,6 +123,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -131,6 +132,8 @@
     </Compile>
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Hash.cs" />
+    <Compile Include="Models\BrandDTO.cs" />
+    <Compile Include="Models\CarDTO.cs" />
     <Compile Include="Models\EmployeeDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cars\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
