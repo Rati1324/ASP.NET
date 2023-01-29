@@ -58,10 +58,9 @@
             if ((int)Session["userType"] != 0)
             {
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Edit", "AddOrEdit", new {id=item.CarId}) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                    <button onclick="edit(@(item.CarId))" id="editButton@(item.CarId)">Edit</button>
                 </td>
             }
             else
@@ -76,15 +75,4 @@
 
 </table>
 <script>
-    function edit(carId) {
-        let editForm = document.querySelector("#edit"+carId)
-        let editButton = document.querySelector("#editButton"+carId);
-
-        editForm.style.display = "block";
-        editButton.innerHTML = "Cancel";
-        editButton.addEventListener('click', function () {
-            editForm.style.display = "none";
-            editButton.innerHTML = "Edit";
-        });
-    }
 </script>

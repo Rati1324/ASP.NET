@@ -24,5 +24,16 @@ namespace Car
             db.Cars.Add(car);
             db.SaveChanges();
         }
+        public void EditCar(DB.Car car)
+        {
+            DB.Car Car = db.Cars.FirstOrDefault(x => x.CarId == car.CarId);
+            if (car != null)
+            {
+                Car.Brand = car.Brand;
+                Car.Model = car.Model;
+                Car.Price = car.Price;
+                db.SaveChanges();
+            }
+        }
     }
 }

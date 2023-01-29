@@ -1,26 +1,42 @@
 ﻿using Car;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Controllers;
-using System.Web.Http.Description;
 
 namespace WebAPI.Controllers
 {
     public class CarsController : ApiController
     {
         private CarRepo carDB = new CarRepo();
-
         // GET: api/Cars
         public IEnumerable<DB.Car> Get()
         {
             return carDB.GetCars();
+        }
+
+        // GET: api/Cars/5
+        public DB.Car Get(int id)
+        {
+            return carDB.GetCar(id);
+        }
+
+        // POST: api/Cars
+        public void Post([FromBody]string value)
+        {
+        }
+
+        // PUT: api/Cars/5
+        public void Put(int id, DB.Car car)
+        {
+            carDB.EditCar(car);
+        }
+
+        // DELETE: api/Cars/5
+        public void Delete(int id)
+        {
         }
     }
 }
