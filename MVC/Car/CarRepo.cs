@@ -15,6 +15,10 @@ namespace Car
         {
             return db.Cars;
         }
+        public DB.Car GetCar(int carId)
+        {
+            return db.Cars.Find(carId);
+        }
         public void AddCar(DB.Car car)
         {
             db.Cars.Add(car);

@@ -51,7 +51,7 @@
             else
             {
                 <td>
-                    @Html.ActionLink("Rent", "Rent", new { carId = item.CarId, userId = Session["userId"] })
+                    @Html.ActionLink("Rent", "Rent", "Users", new { carId = item.CarId, userId = Session["userId"] }, null)
                 </td>
             }
         }

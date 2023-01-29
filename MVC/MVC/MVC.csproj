@@ -135,6 +135,7 @@
     <Compile Include="Models\BrandDTO.cs" />
     <Compile Include="Models\CarDTO.cs" />
     <Compile Include="Models\EmployeeDTO.cs" />
+    <Compile Include="Models\RentData.cs" />
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -65,6 +65,12 @@ namespace MVC.Controllers
             return View();
         }
 
+        public ActionResult Rent(int carId, int userId)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Rent", new RentData { UserId=userId, CarId=carId}).Result;
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult Logout()
         {
             Session.Clear();

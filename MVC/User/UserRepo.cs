@@ -15,9 +15,20 @@ namespace User
         {
             return db.Users;
         }
+        public DB.User GetUser(int id)
+        {
+            return db.Users.Find(id);
+        }
         public void AddUser(DB.User user)
         {
             db.Users.Add(user);
+            db.SaveChanges();
+        }
+        public void Rent(int userId, int carId) 
+        {
+            DB.User user = db.Users.Find(userId);
+            DB.Car car = db.Cars.Find(carId);
+            user.Cars.Add(car); 
             db.SaveChanges();
         }
     }
