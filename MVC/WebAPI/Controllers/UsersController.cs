@@ -16,6 +16,10 @@ namespace WebAPI.Controllers
         {
             return userDB.GetUsers();
         }
+        public void Rent(int userId, int carId)
+        {
+
+        }
 
         // GET: api/Users/5
         public string Get(int id)

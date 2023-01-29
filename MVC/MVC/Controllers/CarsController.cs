@@ -31,5 +31,11 @@ namespace MVC.Controllers
             }
             return View();
         }
+
+        public ActionResult Rent(int userId, int carId)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Rent", new Dictionary<string, int> { { "userId", userId }, { "carId", carId } }).Result;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

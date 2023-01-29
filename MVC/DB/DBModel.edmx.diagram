@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="DBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="DBModel.FK_Car_Brand" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.UserCar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

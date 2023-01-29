@@ -17,6 +17,7 @@
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
     <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Brand1" Relationship="Self.FK_Car_Brand" FromRole="Car" ToRole="Brand" />
+    <NavigationProperty Name="Users" Relationship="DBModel.UserCar" FromRole="Car" ToRole="User" />
   </EntityType>
   <EntityType Name="Employee">
     <Key>
@@ -47,6 +48,7 @@
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Role" Type="Int32" />
+    <NavigationProperty Name="Cars" Relationship="DBModel.UserCar" FromRole="User" ToRole="Car" />
   </EntityType>
   <Association Name="FK_Car_Brand">
     <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
@@ -70,5 +72,13 @@
       <End Role="Brand" EntitySet="Brands" />
       <End Role="Car" EntitySet="Cars" />
     </AssociationSet>
+    <AssociationSet Name="UserCar" Association="DBModel.UserCar">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="UserCar">
+    <End Type="DBModel.Car" Role="Car" Multiplicity="*" />
+    <End Type="DBModel.User" Role="User" Multiplicity="*" />
+  </Association>
 </Schema>
