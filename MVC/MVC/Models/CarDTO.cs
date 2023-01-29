@@ -13,5 +13,7 @@ namespace MVC.Models
         public Nullable<decimal> Price { get; set; }
         public string Model { get; set; }
         public virtual BrandDTO Brand1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User UserDTO { get; set; }
     }
 }

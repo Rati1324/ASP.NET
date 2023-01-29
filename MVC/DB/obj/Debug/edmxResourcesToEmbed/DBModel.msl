@@ -12,6 +12,7 @@
     <EntitySetMapping Name="Cars">
       <EntityTypeMapping TypeName="DBModel.Car">
         <MappingFragment StoreEntitySet="Car">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CarId" ColumnName="CarId" />
           <ScalarProperty Name="Brand" ColumnName="Brand" />
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -52,13 +53,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="UserCar" TypeName="DBModel.UserCar" StoreEntitySet="UserCar">
-      <EndProperty Name="User">
-        <ScalarProperty Name="UserId" ColumnName="UserId" />
-      </EndProperty>
-      <EndProperty Name="Car">
-        <ScalarProperty Name="CarId" ColumnName="CarId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

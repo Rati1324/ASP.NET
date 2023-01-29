@@ -14,19 +14,13 @@ namespace DB
     
     public partial class Car
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
-        {
-            this.Users = new HashSet<User>();
-        }
-    
         public int CarId { get; set; }
         public Nullable<int> Brand { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Model { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual Brand Brand1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual User User { get; set; }
     }
 }

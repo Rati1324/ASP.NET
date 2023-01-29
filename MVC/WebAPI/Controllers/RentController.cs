@@ -12,6 +12,11 @@ namespace WebAPI.Controllers
     public class RentController : ApiController
     {
         UserRepo userDB = new UserRepo();
+        // POST: api/Rent
+        public void Post(Models.RentData RentData)
+        {
+            userDB.Rent(RentData.UserId, RentData.CarId);
+        }
 
         // GET: api/Rent
         public IEnumerable<string> Get(string x)
@@ -25,12 +30,7 @@ namespace WebAPI.Controllers
             return "value";
         }
 
-        // POST: api/Rent
-        public void Post(Models.RentData RentData)
-        {
-            userDB.Rent(RentData.UserId, RentData.CarId);
-        }
-
+        
         // PUT: api/Rent/5
         public void Put(int id, [FromBody]string value)
         {

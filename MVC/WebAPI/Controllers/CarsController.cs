@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         }
 
         // PUT: api/Cars/5
-        public void Put(int id, DB.Car car)
+        public void Put(DB.Car car)
         {
             carDB.EditCar(car);
         }
@@ -38,6 +38,7 @@ namespace WebAPI.Controllers
         // DELETE: api/Cars/5
         public void Delete(int id)
         {
+            carDB.DeleteCar(id);
         }
     }
 }

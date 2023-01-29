@@ -59,14 +59,20 @@
             {
                 <td>
                     @Html.ActionLink("Edit", "AddOrEdit", new {id=item.CarId}) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Delete", "Delete", new {id=item.CarId})
                 </td>
             }
             else
             {
                 <td>
-                    @Html.ActionLink("Rent", "Rent", "Users", new { carId = item.CarId, userId = Session["userId"] }, null)
+                    @if (ViewBag.rentedId != null && item.CarId == ViewBag.rentedId)
+                    {
+                        @Html.ActionLink("Cancel", "Cancel", "Cars", new { carId = item.CarId, cancel=true }, null)
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Rent", "Rent", "Users", new { carId = item.CarId, userId = Session["userId"] }, null)
+                    }
                 </td>
             }
         }

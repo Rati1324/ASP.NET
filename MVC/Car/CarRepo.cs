@@ -35,5 +35,21 @@ namespace Car
                 db.SaveChanges();
             }
         }
+
+        public void CancelRent(DB.Car car)
+        {
+            DB.Car Car = db.Cars.FirstOrDefault(x => x.CarId == car.CarId);
+            if (car != null)
+            {
+                Car.User = null;
+            }
+            db.SaveChanges();
+        }
+        public void DeleteCar(int id)
+        {
+            DB.Car car = db.Cars.Find(id);
+            db.Cars.Remove(car);
+            db.SaveChanges();
+        }
     }
 }

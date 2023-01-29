@@ -20,6 +20,7 @@
           <Property Name="Brand" Type="int" />
           <Property Name="Price" Type="money" />
           <Property Name="Model" Type="varchar" MaxLength="50" />
+          <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -51,14 +52,6 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
           <Property Name="Role" Type="int" />
         </EntityType>
-        <EntityType Name="UserCar">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="CarId" />
-          </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="CarId" Type="int" Nullable="false" />
-        </EntityType>
         <Association Name="FK_Car_Brand">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
@@ -71,26 +64,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserCar_Car">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="UserCar" Type="Self.UserCar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="CarId" />
-            </Principal>
-            <Dependent Role="UserCar">
-              <PropertyRef Name="CarId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_UserCar_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="UserCar" Type="Self.UserCar" Multiplicity="*" />
+        <Association Name="FK_Car_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="UserId" />
             </Principal>
-            <Dependent Role="UserCar">
+            <Dependent Role="Car">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -101,18 +82,13 @@
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserCar" EntityType="Self.UserCar" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Car_Brand" Association="Self.FK_Car_Brand">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="Car" EntitySet="Car" />
           </AssociationSet>
-          <AssociationSet Name="FK_UserCar_Car" Association="Self.FK_UserCar_Car">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="UserCar" EntitySet="UserCar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_UserCar_User" Association="Self.FK_UserCar_User">
+          <AssociationSet Name="FK_Car_User" Association="Self.FK_Car_User">
             <End Role="User" EntitySet="User" />
-            <End Role="UserCar" EntitySet="UserCar" />
+            <End Role="Car" EntitySet="Car" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -136,7 +112,8 @@
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Brand1" Relationship="Self.FK_Car_Brand" FromRole="Car" ToRole="Brand" />
-          <NavigationProperty Name="Users" Relationship="DBModel.UserCar" FromRole="Car" ToRole="User" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="DBModel.FK_Car_User" FromRole="Car" ToRole="User" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -167,7 +144,7 @@
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Role" Type="Int32" />
-          <NavigationProperty Name="Cars" Relationship="DBModel.UserCar" FromRole="User" ToRole="Car" />
+          <NavigationProperty Name="Cars" Relationship="DBModel.FK_Car_User" FromRole="User" ToRole="Car" />
         </EntityType>
         <Association Name="FK_Car_Brand">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
@@ -191,14 +168,22 @@
             <End Role="Brand" EntitySet="Brands" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <AssociationSet Name="UserCar" Association="DBModel.UserCar">
-            <End Role="Car" EntitySet="Cars" />
+          <AssociationSet Name="FK_Car_User" Association="DBModel.FK_Car_User">
             <End Role="User" EntitySet="Users" />
+            <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="UserCar">
+        <Association Name="FK_Car_User">
+          <End Type="DBModel.User" Role="User" Multiplicity="0..1" />
           <End Type="DBModel.Car" Role="Car" Multiplicity="*" />
-          <End Type="DBModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -217,6 +202,7 @@
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="DBModel.Car">
               <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CarId" ColumnName="CarId" />
                 <ScalarProperty Name="Brand" ColumnName="Brand" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -257,14 +243,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="UserCar" TypeName="DBModel.UserCar" StoreEntitySet="UserCar">
-            <EndProperty Name="User">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="Car">
-              <ScalarProperty Name="CarId" ColumnName="CarId" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

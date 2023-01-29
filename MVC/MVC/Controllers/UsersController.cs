@@ -68,7 +68,7 @@ namespace MVC.Controllers
         public ActionResult Rent(int carId, int userId)
         {
             HttpResponseMessage response = GlobalVariables.WebApiClient.PostAsJsonAsync("Rent", new RentData { UserId=userId, CarId=carId}).Result;
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Cars");
         }
 
         public ActionResult Logout()
@@ -76,5 +76,6 @@ namespace MVC.Controllers
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

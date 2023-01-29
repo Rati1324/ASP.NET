@@ -9,9 +9,9 @@
         <EntityTypeShape EntityType="DBModel.Car" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.Employee" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBModel.sysdiagram" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="1.5" PointX="6.125" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="DBModel.FK_Car_Brand" ManuallyRouted="false" />
-        <AssociationConnector Association="DBModel.UserCar" />
+        <AssociationConnector Association="DBModel.FK_Car_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

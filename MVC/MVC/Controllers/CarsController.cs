@@ -23,12 +23,19 @@ namespace MVC.Controllers
                 var readTask = result.Content.ReadAsAsync<IList<CarDTO>>();
                 readTask.Wait();
                 var carList = readTask.Result;
-                //ViewBag.cars = carList;
+                CarDTO rentedCar = carList.FirstOrDefault(c => c.User?.UserId == (int)Session["userId"]);
+                if (rentedCar != null)
+                {
+                    ViewBag.rentedId = rentedCar.CarId;
+                }
+                else
+                {
+                    ViewBag.rentedId = null;
+                }
                 return View(carList);
             }
             else 
             {
-                // error
             }
             return View();
         }
@@ -56,7 +63,21 @@ namespace MVC.Controllers
             else
             {
                 HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Cars/" + car.CarId, car).Result;
+                TempData["SuccessMessage"] = "Edited Successfully";
             }
+            return RedirectToAction("Index", "Cars");
+        }
+
+        public ActionResult Cancel(int carId)
+        {
+            CarDTO car = new CarDTO { CarId = carId};
+            HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("cars", car).Result;
+            return RedirectToAction("Index", "Cars");
+        }
+        public ActionResult Delete(int id)
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.DeleteAsync("Cars/" + id.ToString()).Result;
+            TempData["SuccessMessage"] = "Deleted Successfully";
             return RedirectToAction("Index", "Cars");
         }
     }
