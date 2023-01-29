@@ -57,7 +57,7 @@ namespace MVC.Controllers
             {
                 HttpResponseMessage response = GlobalVariables.WebApiClient.PutAsJsonAsync("Cars/" + car.CarId, car).Result;
             }
-            return Redirect("Index");
+            return RedirectToAction("Index", "Cars");
         }
     }
 }

@@ -24,8 +24,9 @@ namespace WebAPI.Controllers
         }
 
         // POST: api/Cars
-        public void Post([FromBody]string value)
+        public void Post(DB.Car car)
         {
+            carDB.AddCar(car);
         }
 
         // PUT: api/Cars/5
