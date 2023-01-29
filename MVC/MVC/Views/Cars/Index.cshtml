@@ -29,8 +29,23 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr id="edit@(item.CarId)" style="display:none">
         <td>
+            <input name="brandName"/>
+        </td>
+        <td>
+            <input name="model"/>
+        </td>
+        <td>
+            <input name="price"/>
+        </td>
+        <td>
+            <button>Save</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td id="brand">
             @Html.DisplayFor(modelItem => item.Brand1.BrandName)
         </td>
         <td>
@@ -46,6 +61,7 @@
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <button onclick="edit(@(item.CarId))" id="editButton@(item.CarId)">Edit</button>
                 </td>
             }
             else
@@ -59,3 +75,16 @@
 }
 
 </table>
+<script>
+    function edit(carId) {
+        let editForm = document.querySelector("#edit"+carId)
+        let editButton = document.querySelector("#editButton"+carId);
+
+        editForm.style.display = "block";
+        editButton.innerHTML = "Cancel";
+        editButton.addEventListener('click', function () {
+            editForm.style.display = "none";
+            editButton.innerHTML = "Edit";
+        });
+    }
+</script>
