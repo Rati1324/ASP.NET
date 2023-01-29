@@ -39,7 +39,6 @@ namespace MVC
                     //throw new UnauthorizedAccessException();
                     return false;
             return true;
-
         }
     }
 }

@@ -160,3 +160,8 @@ C:\Users\rati\Documents\ASP.NET\MVC\MVC\obj\Debug\MVC.csproj.CoreCompileInputs.c
 C:\Users\rati\Documents\ASP.NET\MVC\MVC\obj\Debug\MVC.csproj.CopyComplete
 C:\Users\rati\Documents\ASP.NET\MVC\MVC\obj\Debug\MVC.dll
 C:\Users\rati\Documents\ASP.NET\MVC\MVC\obj\Debug\MVC.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\MVC\bin\DB.dll
+C:\Users\rati\Documents\ASP.NET\MVC\MVC\bin\EntityFramework.dll
+C:\Users\rati\Documents\ASP.NET\MVC\MVC\bin\DB.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\MVC\bin\DB.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\MVC\bin\EntityFramework.xml

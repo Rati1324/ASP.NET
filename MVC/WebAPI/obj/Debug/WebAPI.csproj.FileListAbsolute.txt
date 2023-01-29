@@ -182,3 +182,6 @@ C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\User.pdb
 C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\User.dll.config
 C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\DB.pdb
 C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\DB.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\Car.dll
+C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\Car.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\WebAPI\bin\Car.dll.config

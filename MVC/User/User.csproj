@@ -55,6 +55,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Car\Car.csproj">
+      <Project>{b838979f-aae6-49f5-9570-c40cf39d7775}</Project>
+      <Name>Car</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DB\DB.csproj">
       <Project>{be694602-beca-4a16-ab23-206d97999e8e}</Project>
       <Name>DB</Name>

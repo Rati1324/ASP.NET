@@ -47,14 +47,14 @@ namespace MVC.Controllers
                 if (userResult != null) {
                     if (Hash.HashForComparison(user.Password, userResult.Password))
                     {
-                        Session["userId"] = 2;
-                        Session["userType"] = 0;
+                        Session["userId"] = userResult.UserId;
+                        Session["userType"] = userResult.Role;
                         return RedirectToAction("Index", "Home");
                     }
-                }
-                else
-                {
-                    TempData["msg"] = "incorrect credentials";
+                    else
+                    {
+                        TempData["msg"] = "incorrect credentials";
+                    }
                 }
             }
             else 

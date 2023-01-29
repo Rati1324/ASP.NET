@@ -13,3 +13,6 @@ C:\Users\rati\Documents\ASP.NET\MVC\User\obj\Debug\User.csproj.CoreCompileInputs
 C:\Users\rati\Documents\ASP.NET\MVC\User\obj\Debug\User.csproj.CopyComplete
 C:\Users\rati\Documents\ASP.NET\MVC\User\obj\Debug\User.dll
 C:\Users\rati\Documents\ASP.NET\MVC\User\obj\Debug\User.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\User\bin\Debug\Car.dll
+C:\Users\rati\Documents\ASP.NET\MVC\User\bin\Debug\Car.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\User\bin\Debug\Car.dll.config

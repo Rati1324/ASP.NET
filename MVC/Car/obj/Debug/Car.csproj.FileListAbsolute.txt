@@ -1,0 +1,15 @@
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\Car.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\Car.dll
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\Car.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\DB.dll
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\EntityFramework.dll
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\DB.pdb
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\DB.dll.config
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\EntityFramework.xml
+C:\Users\rati\Documents\ASP.NET\MVC\Car\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\rati\Documents\ASP.NET\MVC\Car\obj\Debug\Car.csproj.AssemblyReference.cache
+C:\Users\rati\Documents\ASP.NET\MVC\Car\obj\Debug\Car.csproj.CoreCompileInputs.cache
+C:\Users\rati\Documents\ASP.NET\MVC\Car\obj\Debug\Car.csproj.CopyComplete
+C:\Users\rati\Documents\ASP.NET\MVC\Car\obj\Debug\Car.dll
+C:\Users\rati\Documents\ASP.NET\MVC\Car\obj\Debug\Car.pdb
